@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <title>Welcome to class</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='./assets/logo.png') }}">          
+    <link rel="stylesheet" href="{{ url_for('static', filename='./style/Welcome.css') }}">
+    
+</head>
+<body class="welcome">
+    <span id="splash-overlay" class="splash"></span>
+    <span id="welcome" class="z-depth-4"></span>
+    <main class="welcome__content">
+        <div class="welcome__header">
+            <h2 class="flow-text">Welcome to </h2>
+            <image class="logo__img" src="./static/assets/vnuk.png">
+            
+            
+        </div>
+        
+        <h3 class="">Artificial Intelligent Class</h3>
+        <a class="navigate" href="./check">Attendance Check <i class="fa-solid fa-arrow-right"></i></a>
+    </main>
+  </body>
+</html>
