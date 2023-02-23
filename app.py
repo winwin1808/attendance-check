@@ -59,10 +59,10 @@ def train_model():
         for imgname in os.listdir(f'static/faces/{user}'):
             img = cv2.imread(f'static/faces/{user}/{imgname}')
             resized_face = cv2.resize(img, (50, 50))
-            faces.append(resized_face.ravel())
-            labels.append(user)
+            faces.append(resized_face.ravel()) #return 1D array - straight length
+            labels.append(user) #return the labels of the user
     faces = np.array(faces)
-    knn = KNeighborsClassifier(n_neighbors=5)
+    knn = KNeighborsClassifier(n_neighbors=5) #check for only 5 nearest neighbors for giving results.
     knn.fit(faces,labels)
     dump(knn,'model/face_recognition_model.pkl')
     
@@ -113,6 +113,7 @@ def start():
         return render_template('Home.html',totalreg=totalreg(),datetoday2=datetoday2,mess='There is no trained model in the static folder. Please add a new face to continue.') 
     
     df = pd.read_csv(f'Attendance/Attendance-{datetoday}.csv')
+    added = False
     cap = cv2.VideoCapture(0)
     ret = True
     count = 0
@@ -150,9 +151,8 @@ def start():
             userid = identified_person.split('_')[1]
             
             if int(userid) in list(df['Roll']):
-                cv2.putText(frame,f'Attendance Added',(30,120),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2,cv2.LINE_AA)
-                cv2.waitKey(2000)
-                break
+                cv2.putText(frame,f'Attendance Added',(30,130),cv2.FONT_HERSHEY_SIMPLEX,2,(0,255,0),2,cv2.LINE_AA)
+                added = True
 
         cv2.imshow('Attendance',frame)
         
@@ -163,6 +163,9 @@ def start():
         
         if count == 200:
             add_attendance(identified_person)
+            break
+        if added:
+            cv2.waitKey(5000)
             break
 
 
@@ -202,7 +205,7 @@ def add():
     print('Training Model')
     train_model()
     names,rolls,times,l = extract_attendance()    
-    return render_template('Home.html',names=names,rolls=rolls,times=times,l=l,totalreg=totalreg(),datetoday2=datetoday2)
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
