@@ -57,8 +57,8 @@ attendance-check/
 ## Demo Images
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="/mnt/data/image1.png" alt="Demo Image 1" style="width: 48%;">
-  <img src="/mnt/data/image2.png" alt="Demo Image 2" style="width: 48%;">
+  <img src="demo_1.png" alt="Demo Image 1" style="width: 48%;">
+  <img src="demo_2.png" alt="Demo Image 2" style="width: 48%;">
 </div>
 
 ## Acknowledgements
